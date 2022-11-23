@@ -1,3 +1,7 @@
+import Edit from '../../img/edit.svg';
+import Delete from '../../img/delete.svg';
+import Save from '../../img/save.svg';
+
 const ToDoItem = ({
     todo,
     onRemove,
@@ -26,15 +30,15 @@ const ToDoItem = ({
                 <p className="text">{todo.text}</p>
             )}
 
-            {todo.completed === true ? null : (
+            {!todo.completed && (
                 <div className="edit-submit-wrapper">
                     {todoEditing === todo.id ? (
-                        <div className="submit" onClick={e => editTodo(todo.id)}>
-                            submit
+                        <div className="save" onClick={e => editTodo(todo.id)}>
+                            <img className="image-save" src={Save} alt="save"></img>
                         </div>
                     ) : (
                         <div className="edit" onClick={() => setTodoEditing(todo.id)}>
-                            edit
+                            <img className="image-edit" src={Edit} alt="edit"></img>
                         </div>
                     )}
                 </div>
@@ -44,7 +48,7 @@ const ToDoItem = ({
                 className={todo.completed === true ? 'delete-completed' : 'delete'}
                 onClick={() => onRemove(todo.id)}
             >
-                X
+                <img className="image-delete" src={Delete} alt="delete"></img>
             </div>
         </div>
     );

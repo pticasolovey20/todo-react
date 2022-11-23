@@ -14,11 +14,11 @@ const App = () => {
         localStorage.setItem('todos', temp);
     }, [todos]);
 
-    const addTask = userInput => {
-        if (userInput) {
+    const addTask = text => {
+        if (text) {
             const newToDoItem = {
                 id: (Math.random() * 100).toFixed(2),
-                text: userInput,
+                text,
                 completed: false,
             };
 
@@ -28,7 +28,7 @@ const App = () => {
     };
 
     const handleToggle = id => {
-        const updatedTodos = [...todos].map(todo => {
+        const updatedTodos = todos.map(todo => {
             if (todo.id === id) {
                 todo.completed = !todo.completed;
             }
@@ -39,7 +39,7 @@ const App = () => {
     };
 
     const editTodo = id => {
-        const updatedTodos = [...todos].map(todo => {
+        const updatedTodos = todos.map(todo => {
             if (todo.id === id) {
                 todo.text = editingText;
             }
@@ -53,7 +53,7 @@ const App = () => {
     };
 
     const removeTask = id => {
-        setTodos([...todos.filter(todo => todo.id !== id)]);
+        setTodos(todos.filter(todo => todo.id !== id));
     };
 
     const finishedTasks = todos.filter(todo => todo.completed === false);
